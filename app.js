@@ -229,7 +229,10 @@
       '<p>' + all.length + ' video lessons from ' + esc(C.channel) + ', in ' + C.units.length + ' units. Watch a video, take the quick quiz, and get ' + PASS + ' out of 3 right to check it off. Finish a unit with its unit test.</p>' +
       '<div class="stats"><span class="big">' + p + '%</span><span style="flex:1;min-width:160px">' + bar(p) + '<small class="sub">' + d + ' of ' + all.length + ' lessons · ' + testsDone + ' of ' + C.units.length + ' unit tests passed</small></span>' +
       '<span class="streak" title="Days in a row with a finished lesson or test"><b>' + s + '</b> day' + (s === 1 ? "" : "s") + ' in a row</span></div>' +
-      (nx && (state.placement || Object.keys(state.done).length) ? '<div><a class="btn" href="#lesson-' + nx.id + '">' + (d ? "Continue" : "Start") + ': ' + esc(short(nx.title)) + ' →</a></div>' : '<div class="result pass">Every lesson is complete. Amazing work!</div>') +
+      (!nx ? '<div class="result pass">Every lesson is complete. Amazing work!</div>'
+        : (state.placement || Object.keys(state.done).length) ? '<div><a class="btn" href="#lesson-' + nx.id + '">' + (d ? "Continue" : "Start") + ': ' + esc(short(nx.title)) + ' →</a></div>'
+        : "") + // first visit: the placement card below is the way in
+
       (!state.placement && !Object.keys(state.done).length ? '<div class="placement-card"><div style="flex:1;min-width:220px"><span class="ch">New here?</span><h2>Take the placement test first</h2>' +
         '<p>Answer questions from each unit, easiest first. Chapters you already know get marked as done, so you can skip ahead. It ends early when the questions get too hard. Takes about 10–20 minutes, one try only.</p></div>' +
         '<div class="actions"><a class="btn" href="#placement">Start placement test</a><button class="btn ghost" type="button" id="skipPlacement">Start from the beginning</button></div></div>' : "") +
