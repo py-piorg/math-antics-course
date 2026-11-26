@@ -26,11 +26,11 @@
   // ---------- storage ----------
   // review: { "lessonId:q": rightInARow }  log: [[timeMs, type, id, score, total]]  watch: { "y-m-d": seconds }
   // seen: { lessonId: hex bitmap of video seconds actually played }  locks: { testKey: retry-after ms }
-  var state = { done: {}, tests: {}, days: [], last: null, theme: "auto", review: {}, log: [], watch: {}, ctests: {}, badges: {}, name: "", seen: {}, locks: {}, tampered: 0 };
+  var state = { done: {}, tests: {}, days: [], last: null, theme: "auto", review: {}, log: [], watch: {}, ctests: {}, badges: {}, name: "", seen: {}, locks: {}, tampered: 0, placed: {}, placement: null };
   // A signature over the parts that matter, so progress edited by hand (in the
   // browser's storage or a changed backup code) is noticed and shown in the report.
   var SALT = "mac-4b9e-course";
-  function core(s) { return JSON.stringify([s.done, s.tests, s.ctests, s.badges, s.seen, s.locks]); }
+  function core(s) { return JSON.stringify([s.done, s.tests, s.ctests, s.badges, s.seen, s.locks, s.placed || {}, s.placement || null]); }
   function sig(s) { var str = core(s) + SALT, h1 = 0x811c9dc5, h2 = 0x1234567; for (var i = 0; i < str.length; i++) { var c = str.charCodeAt(i); h1 = Math.imul(h1 ^ c, 16777619) >>> 0; h2 = Math.imul(h2 + c, 2246822519) >>> 0; h2 = (h2 << 13 | h2 >>> 19) >>> 0; } return h1.toString(36) + h2.toString(36); }
   function obj(o) { return o && typeof o === "object" && !Array.isArray(o) ? o : {}; }
   function load(o) {
@@ -42,6 +42,7 @@
     state.review = obj(o.review); state.log = Array.isArray(o.log) ? o.log : []; state.watch = obj(o.watch);
     state.ctests = obj(o.ctests); state.badges = obj(o.badges); state.name = typeof o.name === "string" ? o.name : (state.name || "");
     state.seen = obj(o.seen); state.locks = obj(o.locks); state.tampered = +o.tampered || 0;
+    state.placed = obj(o.placed); state.placement = o.placement && typeof o.placement === "object" ? o.placement : null;
     return true;
   }
   function checkSig(o) {
@@ -90,7 +91,9 @@
   });
   var byId = {}; all.forEach(function (l) { byId[l.id] = l; });
 
-  function isDone(l) { return state.done[l.id] != null; }
+  function isPlaced(l) { return !!state.placed[l.unit.num + "." + l.chapter.num]; }
+  function isDone(l) { return state.done[l.id] != null || isPlaced(l); }
+  function scoreText(l) { return state.done[l.id] != null ? state.done[l.id] + "/3" : "Placed out"; }
   function countDone(list) { return list.filter(isDone).length; }
   function testPassed(u) { return (state.tests[u.num] || 0) >= TEST_PASS; }
   function pct(n, d) { return d ? Math.round((n / d) * 100) : 0; }
@@ -226,7 +229,10 @@
       '<p>' + all.length + ' video lessons from ' + esc(C.channel) + ', in ' + C.units.length + ' units. Watch a video, take the quick quiz, and get ' + PASS + ' out of 3 right to check it off. Finish a unit with its unit test.</p>' +
       '<div class="stats"><span class="big">' + p + '%</span><span style="flex:1;min-width:160px">' + bar(p) + '<small class="sub">' + d + ' of ' + all.length + ' lessons · ' + testsDone + ' of ' + C.units.length + ' unit tests passed</small></span>' +
       '<span class="streak" title="Days in a row with a finished lesson or test"><b>' + s + '</b> day' + (s === 1 ? "" : "s") + ' in a row</span></div>' +
-      (nx ? '<div><a class="btn" href="#lesson-' + nx.id + '">' + (d ? "Continue" : "Start") + ': ' + esc(short(nx.title)) + ' →</a></div>' : '<div class="result pass">Every lesson is complete. Amazing work!</div>') +
+      (nx && (state.placement || Object.keys(state.done).length) ? '<div><a class="btn" href="#lesson-' + nx.id + '">' + (d ? "Continue" : "Start") + ': ' + esc(short(nx.title)) + ' →</a></div>' : '<div class="result pass">Every lesson is complete. Amazing work!</div>') +
+      (!state.placement && !Object.keys(state.done).length ? '<div class="placement-card"><div style="flex:1;min-width:220px"><span class="ch">New here?</span><h2>Take the placement test first</h2>' +
+        '<p>Answer questions from each unit, easiest first. Chapters you already know get marked as done, so you can skip ahead. It ends early when the questions get too hard. Takes about 10–20 minutes, one try only.</p></div>' +
+        '<div class="actions"><a class="btn" href="#placement">Start placement test</a><button class="btn ghost" type="button" id="skipPlacement">Start from the beginning</button></div></div>' : "") +
       '<div class="quick"><a class="btn ghost" href="#review">Review mistakes <span class="count-badge" data-review-count>' + reviewCount() + '</span></a>' +
       '<a class="btn ghost" href="#badges">Badges <span class="count-badge">' + earnedCount() + '</span></a><a class="btn ghost" href="#report">Progress report</a></div>' +
       '</section><div class="units">';
@@ -240,6 +246,8 @@
     h += '</div>';
     app.innerHTML = h;
     document.title = "Math Antics Course";
+    var sp = document.getElementById("skipPlacement");
+    if (sp) sp.addEventListener("click", function () { state.placement = { at: Date.now(), skipped: true }; save(); route(); });
   }
 
   // ---------- chapter tests ----------
@@ -276,7 +284,7 @@
       (nx ? '<div><a class="btn" href="#lesson-' + nx.id + '">' + (ud ? "Continue this unit" : "Start this unit") + ': ' + esc(short(nx.title)) + ' →</a></div>' : "") + '</div>';
     u.chapters.forEach(function (c) {
       var cd = countDone(c.lessons), open = cd < c.lessons.length;
-      h += '<details class="chapter"' + (open ? " open" : "") + '><summary><span style="flex:1;min-width:0"><span class="ch">Chapter ' + c.num + (cd === c.lessons.length ? " · Complete ✓" : "") + (ctPassed(c) ? " · Test passed ✓" : "") + '</span><h2>' + esc(c.title) + '</h2></span>' +
+      h += '<details class="chapter"' + (open ? " open" : "") + '><summary><span style="flex:1;min-width:0"><span class="ch">Chapter ' + c.num + (cd === c.lessons.length ? " · Complete ✓" : "") + (ctPassed(c) ? " · Test passed ✓" : "") + (state.placed[ctKey(c)] ? " · Placed out" : "") + '</span><h2>' + esc(c.title) + '</h2></span>' +
         '<span class="count">' + cd + '/' + c.lessons.length + '</span><span class="chev" aria-hidden="true">▶</span></summary>' + lessonList(c.lessons) + chapterTestRow(c) + '</details>';
     });
     h += testCard(u);
@@ -292,7 +300,7 @@
       var dn = isDone(l);
       h += '<li class="' + (dn ? "done" : "") + (l === current ? " current" : "") + '"><a href="#lesson-' + l.id + '"' + (l === current ? ' aria-current="page"' : "") + '><span class="check" aria-label="' + (dn ? "Completed" : "Not completed") + '">' + (dn ? "✓" : l.num) + '</span>' +
         '<span class="t">' + esc(l.title) + '<small>Lesson ' + l.num + (l.len ? " · " + dur(l.len) : "") + (l === current ? " · You are here" : "") + '</small></span>' +
-        (dn ? '<span class="score">' + state.done[l.id] + '/3</span>' : "") + '</a></li>';
+        (dn ? '<span class="score">' + scoreText(l) + '</span>' : "") + '</a></li>';
     });
     return h + '</ol>';
   }
@@ -479,7 +487,7 @@
     var h ='<nav class="crumbs"><a href="#home">All units</a><span>›</span><a href="#unit-' + u.num + '">Unit ' + u.num + ': ' + esc(u.title) + '</a><span>›</span><span>Chapter ' + c.num + ': ' + esc(c.title) + '</span></nav>' +
       '<div class="lesson-grid"><div><h1 class="lesson-title">' + esc(l.title) + '</h1>' +
       '<div class="lesson-sub"><span>Lesson ' + l.num + ' of ' + c.lessons.length + ' in this chapter</span>' + (l.len ? '<span>· ' + dur(l.len) + '</span>' : "") +
-      (dn ? '<span class="pill">✓ Completed · ' + state.done[l.id] + '/3</span>' : "") + '</div></div>' +
+      (dn ? '<span class="pill">✓ ' + (state.done[l.id] != null ? "Completed · " + scoreText(l) : "Placed out") + '</span>' : "") + '</div></div>' +
       '<div class="video" id="videoBox"></div>' +
       '<div class="vbar"><span class="sub">' + checkpoints(l).length + ' pop-quiz questions appear during the video</span><span class="dots" id="cpDots"></span><span id="watchMeter"></span>' +
       '<button class="btn ghost small" type="button" id="fsBtn">⛶ Full screen</button></div>' +
@@ -522,7 +530,7 @@
         // practice round: answers can be shown, saved score never changes
         logEvent("practice", l.id, right, 3); save();
         markForm(form, l.quiz);
-        res.innerHTML = '<div class="result ' + (right >= PASS ? "pass" : "fail") + '">' + stars(right, 3) + '<span>Practice round: ' + right + ' of 3. Your saved score (' + state.done[l.id] + '/3) stays the same.</span></div>';
+        res.innerHTML = '<div class="result ' + (right >= PASS ? "pass" : "fail") + '">' + stars(right, 3) + '<span>Practice round: ' + right + ' of 3. ' + (state.done[l.id] != null ? "Your saved score (" + scoreText(l) + ") stays the same." : "You placed out of this lesson, so this is just practice.") + '</span></div>';
         rb.hidden = false; rb.textContent = "Practice again";
       } else if (right >= PASS) {
         logEvent("lesson", l.id, right, 3);
@@ -773,6 +781,80 @@
     document.getElementById("renameBtn").addEventListener("click", function () { certView.prev = state.name; state.name = ""; save(); certView(n); });
   }
 
+  // ---------- placement test ----------
+  // Goes unit by unit (easiest first). A chapter is placed out when every one
+  // of its questions is right. Ends after two units in a row with nothing
+  // placed out, or when she chooses to stop. No answers are shown; one try.
+  var P = null;
+  function placementView() {
+    var crumbs = '<nav class="crumbs"><a href="#home">All units</a><span>›</span><span>Placement test</span></nav>';
+    if (state.placement && !P) {
+      var pl = state.placement;
+      app.innerHTML = crumbs + '<section class="panel empty"><h1 class="lesson-title">' + (pl.skipped ? "Placement test skipped" : "Placement test already taken") + '</h1>' +
+        '<p>' + (pl.skipped ? "You chose to start from the beginning." : "You placed out of " + (pl.placed || []).length + " chapter" + ((pl.placed || []).length === 1 ? "" : "s") + " on " + new Date(pl.at).toLocaleDateString() + ".") +
+        ' The placement test can only be taken once. (Resetting all progress at the bottom of the page lets it be taken again.)</p>' +
+        '<div class="actions"><a class="btn" href="#home">Back to lessons</a></div></section>';
+      document.title = "Placement test"; return;
+    }
+    if (!P) P = { unit: 0, results: {}, right: 0, asked: 0, empty: 0 };
+    var u = C.units[P.unit], rand = seeded(String(Date.now()));
+    var per = u.chapters.length === 1 ? 3 : 2, items = [];
+    u.chapters.forEach(function (c) {
+      var picks = shuffle(c.lessons, rand), used = {};
+      for (var k = 0; k < per; k++) {
+        var l = picks[k % picks.length], free = l.quiz.map(function (q, i) { return i; }).filter(function (i) { return !used[l.id + ":" + i]; });
+        var qi = free[Math.floor(rand() * free.length)]; used[l.id + ":" + qi] = 1;
+        items.push({ q: l.quiz[qi].q, a: l.quiz[qi].a, ch: c });
+      }
+    });
+    items = shuffle(items, rand);
+    app.innerHTML = crumbs + '<div class="lesson-grid"><div><h1 class="lesson-title">Placement test</h1>' +
+      '<div class="lesson-sub"><span>Section ' + (P.unit + 1) + ' of ' + C.units.length + ': ' + esc(u.title) + '</span><span class="pill">' + Object.keys(P.results).filter(function (k) { return P.results[k]; }).length + ' chapters placed out so far</span></div>' +
+      bar(Math.round(100 * P.unit / C.units.length)) + '</div>' +
+      '<form class="panel" id="quiz"><h2>' + esc(u.title) + '</h2><p>Do your best. If you don\'t know an answer, pick the one you think is closest. It\'s fine to get some wrong: that just means those lessons are right for you.</p>' +
+      quizHTML(items, function () { return rand; }) +
+      '<div class="actions"><button class="btn" type="submit" id="checkBtn">Next section →</button><button class="btn ghost" type="button" id="stopBtn">Stop here and start learning</button></div><div id="result" aria-live="polite"></div></form></div>';
+    document.title = "Placement test";
+    var form = document.getElementById("quiz"), res = document.getElementById("result");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var right = grade(form, items, null, false);
+      if (right < 0) { res.innerHTML = '<div class="result fail">Please answer every question first. Guessing is OK.</div>'; return; }
+      P.right += right; P.asked += items.length;
+      var passedHere = 0;
+      u.chapters.forEach(function (c) {
+        var all = true;
+        items.forEach(function (q, qi) {
+          if (q.ch !== c) return;
+          var pick = form.querySelector('input[name="q' + qi + '"]:checked');
+          if (!pick || !isRight(pick.value)) all = false;
+        });
+        P.results[ctKey(c)] = all; if (all) passedHere++;
+      });
+      P.empty = passedHere ? 0 : P.empty + 1;
+      P.unit++;
+      if (P.unit >= C.units.length || P.empty >= 2) finishPlacement(); else { placementView(); window.scrollTo(0, 0); }
+    });
+    document.getElementById("stopBtn").addEventListener("click", finishPlacement);
+  }
+  function finishPlacement() {
+    var placed = Object.keys(P.results).filter(function (k) { return P.results[k]; });
+    placed.forEach(function (k) { state.placed[k] = Date.now(); });
+    state.placement = { at: Date.now(), placed: placed, right: P.right, asked: P.asked, sections: P.unit };
+    logEvent("placement", String(placed.length), P.right, P.asked); markStudied();
+    var stopped = P.unit < C.units.length && P.empty < 2, empty = P.empty;
+    P = null; save(); updatePill();
+    var nx = nextUp(), list = allChapters().filter(function (c) { return state.placed[ctKey(c)]; });
+    app.innerHTML = '<nav class="crumbs"><a href="#home">All units</a><span>›</span><span>Placement test</span></nav>' +
+      '<section class="panel empty"><span class="ch">Placement test complete</span><h1 class="lesson-title">' + (list.length ? "You placed out of " + list.length + " chapter" + (list.length === 1 ? "" : "s") + "!" : "You're starting from the beginning") + '</h1>' +
+      '<p>' + (list.length ? "Those lessons are marked as done, so you can skip them. You can still watch any of them for practice. To earn a unit's certificate you'll still need to pass its unit test." : "That's totally fine. The lessons will build up step by step.") +
+      (empty >= 2 ? " The test ended here because the next units cover things you haven't learned yet." : stopped ? " You stopped early, so later units weren't checked." : "") + '</p>' +
+      (list.length ? '<ul class="placed-list">' + list.map(function (c) { return '<li>Unit ' + c.unit.num + ' · ' + esc(c.title) + '</li>'; }).join("") + '</ul>' : "") +
+      '<div class="actions">' + (nx ? '<a class="btn" href="#lesson-' + nx.id + '">Start: ' + esc(short(nx.title)) + ' →</a>' : "") + '<a class="btn ghost" href="#home">See all units</a></div></section>';
+    document.title = "Placement results";
+    window.scrollTo(0, 0);
+  }
+
   // ---------- review mistakes ----------
   function updateReviewLink() {
     var n = reviewCount();
@@ -868,6 +950,7 @@
       else if (e[1] === "test") what = "Unit " + e[2] + " test · " + e[3] + "/" + e[4] + (e[3] >= TEST_PASS ? " · passed" : "");
       else if (e[1] === "ctest") what = "Chapter " + e[2] + " test · " + e[3] + "/" + e[4];
       else if (e[1] === "review") what = "Review round · " + e[3] + "/" + e[4];
+      else if (e[1] === "placement") what = "Placement test · " + e[3] + "/" + e[4] + " right · placed out of " + e[2] + " chapter" + (e[2] === "1" ? "" : "s");
       else if (e[1] === "practice") what = "Practice round in " + '<a href="#lesson-' + e[2] + '">' + esc(short(byId[e[2]] ? byId[e[2]].title : "a lesson")) + '</a> · ' + e[3] + '/3';
       else what = "Pop quiz in " + '<a href="#lesson-' + e[2] + '">' + esc(short(byId[e[2]] ? byId[e[2]].title : "a lesson")) + '</a> · ' + (e[3] ? "right" : "missed");
       return '<li><span class="when">' + when + '</span><span>' + what + '</span></li>';
@@ -905,6 +988,7 @@
     else if (h.indexOf("ctest-") === 0) chapterTestView(h.slice(6));
     else if (h.indexOf("cert-") === 0) certView(parseInt(h.slice(5), 10));
     else if (h === "badges") badgesView();
+    else if (h === "placement") placementView();
     else if (h === "review") reviewView();
     else if (h === "report") reportView();
     else home();
@@ -949,7 +1033,7 @@
   // ---------- backup / restore & reset ----------
   var panel = document.getElementById("toolsPanel");
   function encode() {
-    var o = { done: state.done, tests: state.tests, days: state.days, last: state.last, review: state.review, log: state.log, watch: state.watch, ctests: state.ctests, badges: state.badges, name: state.name, seen: state.seen, locks: state.locks, tampered: state.tampered, _v: 2 };
+    var o = { done: state.done, tests: state.tests, days: state.days, last: state.last, review: state.review, log: state.log, watch: state.watch, ctests: state.ctests, badges: state.badges, name: state.name, seen: state.seen, locks: state.locks, tampered: state.tampered, placed: state.placed, placement: state.placement, _v: 2 };
     o._sig = sig(o);
     return btoa(unescape(encodeURIComponent(JSON.stringify(o))));
   }
@@ -984,7 +1068,7 @@
     area.innerHTML = '<button class="linkbtn" id="resetBtn" type="button">Reset progress</button>';
     document.getElementById("resetBtn").addEventListener("click", function () {
       area.innerHTML = '<span class="confirm">Erase all progress? <button class="btn danger" id="yesReset" type="button">Yes, reset</button><button class="btn ghost" id="noReset" type="button">Cancel</button></span>';
-      document.getElementById("yesReset").addEventListener("click", function () { state.done = {}; state.tests = {}; state.days = []; state.last = null; state.review = {}; state.log = []; state.watch = {}; state.ctests = {}; state.badges = {}; save(); resetButton(); route(); });
+      document.getElementById("yesReset").addEventListener("click", function () { state.done = {}; state.tests = {}; state.days = []; state.last = null; state.review = {}; state.log = []; state.watch = {}; state.ctests = {}; state.badges = {}; state.placed = {}; state.placement = null; state.seen = {}; state.locks = {}; save(); resetButton(); route(); });
       document.getElementById("noReset").addEventListener("click", resetButton);
     });
   }

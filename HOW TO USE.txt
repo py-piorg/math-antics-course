@@ -15,6 +15,17 @@ double-clicking. Every lesson also has a "Watch it on YouTube" link.)
 
 HOW PROGRESS WORKS
 ------------------
+PLACEMENT TEST (first visit)
+- The home page offers a placement test before she starts. It goes unit by
+  unit, easiest first, with 2 questions per chapter (3 for one-chapter units).
+- Getting every question for a chapter right marks that chapter "Placed out":
+  its lessons count as done and she can skip them (she can still watch them).
+- It ends early after two units in a row with nothing placed out, or when she
+  presses "Stop here". Answers aren't shown, and it can only be taken once.
+- To earn a unit certificate she still has to pass that unit's test.
+- "Start from the beginning" skips the placement test.
+- Resetting all progress (bottom of the page) lets her take it again.
+
 FAIR-PLAY RULES (to stop shortcuts)
 - A lesson quiz unlocks only after 85% of the video has actually been played.
   Skipping ahead doesn't count, and the fastest speed is 1.5x.
