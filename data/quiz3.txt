@@ -1,0 +1,188 @@
+@63
+Which number is smaller? | -8 | -3 | 0
+On a thermometer, -5° means... | 5 degrees below zero | 5 degrees above zero | Exactly zero
+What is the opposite of 7? | -7 | 1/7 | 0
+@62
+-3 + 5 = ? | 2 | -8 | 8
+4 − 9 = ? | -5 | 5 | -13
+-6 − (-2) = ? | -4 | -8 | 4
+@61
+-4 × 3 = ? | -12 | 12 | -7
+-5 × -6 = ? | 30 | -30 | -11
+-20 ÷ 4 = ? | -5 | 5 | -16
+@30
+What is the absolute value of -9? | 9 | -9 | 0
+What is the absolute value of 4? | 4 | -4 | 1/4
+Absolute value tells you a number's... | Distance from zero | Sign | Number of digits
+@34
+2³ = ? | 8 | 6 | 9
+In 5², the 2 is called the... | Exponent | Base | Coefficient
+10⁴ = ? | 10,000 | 40 | 1,000
+@33
+√49 = ? | 7 | 24.5 | 9
+√81 = ? | 9 | 8 | 40.5
+Taking a square root undoes... | Squaring a number | Halving a number | Adding to a number
+@29
+Simplify √50. | 5√2 | 25√2 | 2√5
+Simplify √12. | 2√3 | 3√2 | 4√3
+Simplify √18. | 3√2 | 2√3 | 9√2
+@17
+Which number is irrational? | √2 | 1/2 | 0.25
+Written as decimals, irrational numbers... | Go on forever without repeating | Always end | Always repeat
+Which number is rational? | 0.75 | π | √3
+@32
+3,000 in scientific notation is... | 3 × 10³ | 3 × 10² | 30 × 10²
+4.5 × 10² = ? | 450 | 45 | 4,500
+0.006 in scientific notation is... | 6 × 10⁻³ | 6 × 10³ | 0.6 × 10⁻²
+@36
+The metric system is based on powers of... | 10 | 12 | 2
+The prefix "kilo" means... | 1,000 | 100 | 1/1,000
+The prefix "centi" means... | 1/100 | 100 | 1/10
+@35
+How many inches are in a foot? | 12 | 10 | 3
+How many centimeters are in a meter? | 100 | 10 | 1,000
+How many feet are in a yard? | 3 | 12 | 5
+@27
+A ruler is used to measure... | Length | Weight | Temperature
+2.5 meters is how many centimeters? | 250 | 25 | 2,500
+When you measure with a ruler, you line the object up with... | The zero mark | The 1 mark | The middle
+@13
+Water freezes at... | 0°C (32°F) | 0°F (32°C) | 100°C
+Water boils (at sea level) at... | 100°C (212°F) | 100°F | 50°C
+Which is warmer? | 30°C | 30°F | They are the same
+@26
+How many minutes are in an hour? | 60 | 100 | 24
+3:45 is the same as... | Quarter to four | Quarter past three | Half past three
+2:30 PM in 24-hour time is... | 14:30 | 2:30 | 12:30
+@77
+A line goes on forever in... | Both directions | One direction | No direction
+A ray has... | One endpoint | Two endpoints | No endpoints
+A line segment has... | Two endpoints | One endpoint | No endpoints
+@78
+An angle smaller than 90° is... | Acute | Obtuse | Right
+An angle of exactly 90° is a... | Right angle | Straight angle | Acute angle
+An angle between 90° and 180° is... | Obtuse | Acute | Right
+@76
+A full circle has... | 360° | 180° | 90°
+A straight angle measures... | 180° | 90° | 360°
+Two angles that add up to 90° are called... | Complementary | Supplementary | Vertical
+@75
+A polygon with 5 sides is a... | Pentagon | Hexagon | Octagon
+A polygon with 8 sides is an... | Octagon | Hexagon | Heptagon
+Is a circle a polygon? | No, it has no straight sides | Yes, always | Only if it's large
+@74
+The angles inside a triangle add up to... | 180° | 360° | 90°
+A triangle with all three sides equal is... | Equilateral | Isosceles | Scalene
+A triangle has two angles of 50°. The third angle is... | 80° | 100° | 50°
+@71
+A quadrilateral has how many sides? | 4 | 3 | 5
+A square is also a... | Rectangle | Triangle | Pentagon
+The angles inside a quadrilateral add up to... | 360° | 180° | 270°
+@4
+A line of symmetry splits a shape into... | Two mirror-image halves | Two different shapes | Four parts
+How many lines of symmetry does a square have? | 4 | 2 | 1
+Which capital letter has a vertical line of symmetry? | A | F | G
+@0
+Sliding a shape without turning it is a... | Translation | Rotation | Reflection
+Flipping a shape over a line is a... | Reflection | Translation | Rotation
+Turning a shape around a point is a... | Rotation | Reflection | Translation
+@69
+What is the perimeter of a 5 by 3 rectangle? | 16 | 15 | 8
+What is the perimeter of a square with sides of 7? | 28 | 49 | 14
+Perimeter is the... | Distance around a shape | Space inside a shape | Height of a shape
+@67
+What is the area of a 6 by 4 rectangle? | 24 | 20 | 10
+What is the area of a triangle with base 10 and height 6? | 30 | 60 | 16
+Area is measured in... | Square units | Plain units | Cubic units
+@66
+π (pi) is about... | 3.14 | 2.14 | 3.41
+π is a circle's circumference divided by its... | Diameter | Radius | Area
+A circle's diameter is... its radius | Twice | Half | The same as
+@65
+Circumference of a circle with diameter 10 (use π ≈ 3.14) | 31.4 | 314 | 15.7
+Area of a circle with radius 2 (use π ≈ 3.14) | 12.56 | 6.28 | 4
+The formula for the area of a circle is... | πr² | 2πr | πd
+@3
+An arc is... | Part of a circle's circumference | The center of a circle | A straight line across a circle
+The arc for a 90° angle is what fraction of the whole circle? | 1/4 | 1/2 | 1/3
+A circle's circumference is 40 cm. The arc for 180° is... | 20 cm | 10 cm | 40 cm
+@46
+What is the volume of a 2 × 3 × 4 box? | 24 | 9 | 20
+Volume is measured in... | Cubic units | Square units | Plain units
+What is the volume of a cube with sides of 3? | 27 | 9 | 12
+@41
+a² + b² = c² works for which triangles? | Right triangles | All triangles | Equilateral triangles only
+A right triangle has legs of 3 and 4. The hypotenuse is... | 5 | 7 | 6
+A right triangle has legs of 6 and 8. The hypotenuse is... | 10 | 14 | 12
+@18
+Which graph is best for showing parts of a whole? | Pie chart | Line graph | Number line
+A line graph is good for showing... | Change over time | Parts of a whole | A single number
+On a bar graph, a taller bar means... | A bigger value | A smaller value | An older value
+@42
+What is the mean (average) of 2, 4, and 6? | 4 | 6 | 12
+What is the median of 3, 7, 9, 10, 12? | 9 | 7 | 8.2
+What is the mode of 1, 2, 2, 3, 5? | 2 | 3 | 1
+@31
+What is the probability of heads on one coin flip? | 1/2 | 1/4 | 1
+What is the probability of rolling a 3 on a six-sided die? | 1/6 | 1/3 | 1/2
+A probability of 0 means the event... | Can't happen | Will definitely happen | Is a 50/50 chance
+@58
+In algebra, a letter like x stands for... | An unknown number | Multiplication | Zero
+If x + 3 = 5, then x = ? | 2 | 8 | 3
+3x means... | 3 times x | 3 plus x | x to the third power
+@57
+Solve x + 7 = 12. | x = 5 | x = 19 | x = 7
+Solve x − 4 = 10. | x = 14 | x = 6 | x = 40
+When solving an equation, whatever you do to one side you must... | Also do to the other side | Undo on the same side | Ignore
+@59
+Solve 4x = 20. | x = 5 | x = 16 | x = 80
+Solve x/3 = 6. | x = 18 | x = 2 | x = 9
+To undo multiplying by 4, you... | Divide by 4 | Subtract 4 | Multiply by 4
+@53
+Solve 2x + 3 = 11. | x = 4 | x = 7 | x = 5
+Solve 3x − 5 = 10. | x = 5 | x = 15 | x = 3
+Solve x/2 + 1 = 6. | x = 10 | x = 14 | x = 7
+@20
+5 > 3 is read... | 5 is greater than 3 | 5 is less than 3 | 5 equals 3
+Which number makes x < 4 true? | 2 | 4 | 6
+The symbol ≥ means... | Greater than or equal to | Less than or equal to | Not equal to
+@19
+Solve x + 2 > 7. | x > 5 | x > 9 | x < 5
+Solve 3x ≤ 12. | x ≤ 4 | x ≥ 4 | x ≤ 9
+When you multiply or divide both sides of an inequality by a negative number, you... | Flip the inequality sign | Keep the sign the same | Change it to an equals sign
+@56
+x · x · x = ? | x³ | 3x | x + 3
+(2x)² = ? | 4x² | 2x² | 4x
+What is x² when x = 5? | 25 | 10 | 7
+@25
+x² · x³ = ? | x⁵ | x⁶ | 2x⁵
+x⁶ ÷ x² = ? | x⁴ | x³ | x⁸
+(x²)³ = ? | x⁶ | x⁵ | x⁸
+@54
+How many terms does 3x² + 2x − 5 have? | 3 | 2 | 5
+What is the degree of 4x³ + x? | 3 | 4 | 1
+A polynomial with exactly two terms is a... | Binomial | Monomial | Trinomial
+@50
+3x + 5x = ? | 8x | 8x² | 15x
+2x + 3 + 4x − 1 = ? | 6x + 2 | 6x + 4 | 8x
+Like terms have the same... | Variable and exponent | Coefficient | Sign
+@47
+3(x + 4) = ? | 3x + 12 | 3x + 4 | x + 12
+2(5 − x) = ? | 10 − 2x | 10 − x | 7 − 2x
+−(x + 2) = ? | −x − 2 | −x + 2 | x − 2
+@44
+In the point (3, 5), the 3 is the... | x-coordinate | y-coordinate | origin
+The point (0, 0) is called the... | Origin | Axis | Slope
+The point (−2, 4) is in which quadrant? | II | I | IV
+@43
+If f(x) = x + 3, then f(2) = ? | 5 | 6 | 1
+If f(x) = 2x, then f(5) = ? | 10 | 7 | 25
+A function gives each input... | Exactly one output | Many outputs | No output
+@40
+In y = 2x + 1, the slope is... | 2 | 1 | x
+In y = 2x + 1, the y-intercept is... | 1 | 2 | 0
+The graph of a linear function is a... | Straight line | Curve | Circle
+@28
+Slope is... | Rise over run | Run over rise | Rise times run
+What is the slope of the line through (0, 0) and (2, 6)? | 3 | 1/3 | 6
+What is the distance between (0, 0) and (3, 4)? | 5 | 7 | 1

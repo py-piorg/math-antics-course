@@ -1,0 +1,93 @@
+# Format: @videoNumber, then one question per line: question | correct answer | wrong | wrong
+@60
+Which are the four basic operations of arithmetic? | Addition, subtraction, multiplication, division | Counting, measuring, guessing, rounding | Squaring, graphing, solving, factoring
+Multiplication is a shortcut for repeated... | Addition | Subtraction | Division
+Division is the opposite (inverse) of... | Multiplication | Addition | Subtraction
+@48
+In 4,529, which digit is in the hundreds place? | 5 | 4 | 2
+What is the value of the 7 in 3,782? | 700 | 70 | 7,000
+Our number system is called base... | 10 | 2 | 100
+@21
+On a number line, numbers get bigger as you move to the... | Right | Left | Bottom
+Which number is halfway between 10 and 20? | 15 | 12 | 18
+Which number is to the left of 0 on a number line? | -3 | 3 | 30
+@16
+Which is true? | 452 > 425 | 452 < 425 | 452 = 425
+The symbol < means... | Less than | Greater than | Equal to
+Which number is the greatest? | 1,203 | 1,032 | 998
+@52
+Round 47 to the nearest ten. | 50 | 40 | 45
+Round 1,349 to the nearest hundred. | 1,300 | 1,400 | 1,350
+Round 2.65 to the nearest tenth. | 2.7 | 2.6 | 3
+@23
+What comes next: 3, 6, 9, 12, ...? | 15 | 14 | 18
+What comes next: 2, 4, 8, 16, ...? | 32 | 24 | 20
+What comes next: 50, 45, 40, 35, ...? | 30 | 25 | 40
+@11
+What number is XIV? | 14 | 16 | 9
+How do you write 9 in Roman numerals? | IX | VIIII | XI
+What does the Roman numeral L stand for? | 50 | 100 | 5
+@102
+358 + 147 = ? | 505 | 495 | 405
+When a column adds up to 10 or more, you... | Carry (regroup) to the next column | Drop the extra | Start over
+1,206 + 794 = ? | 2,000 | 1,990 | 1,900
+@99
+503 − 178 = ? | 325 | 335 | 425
+When the top digit is smaller than the bottom digit, you... | Borrow (regroup) from the next column | Swap the two numbers | Skip that column
+1,000 − 1 = ? | 999 | 900 | 1,001
+@101
+23 × 3 = ? | 69 | 66 | 63
+41 × 2 = ? | 82 | 84 | 81
+7 × 8 = ? | 56 | 54 | 64
+@100
+24 × 13 = ? | 312 | 302 | 322
+15 × 12 = ? | 180 | 170 | 150
+125 × 4 = ? | 500 | 400 | 450
+@49
+6 × (10 + 3) is the same as... | 6×10 + 6×3 | 6×10 + 3 | 6 + 10 + 3
+7 × 12 = 7×10 + 7×2 = ? | 84 | 74 | 82
+4 × 25 = 4×20 + 4×5 = ? | 100 | 90 | 80
+@81
+56 ÷ 7 = ? | 8 | 7 | 9
+In 20 ÷ 4 = 5, the number 20 is called the... | Dividend | Divisor | Quotient
+45 ÷ 5 = ? | 9 | 8 | 7
+@79
+84 ÷ 4 = ? | 21 | 22 | 24
+156 ÷ 3 = ? | 52 | 51 | 53
+735 ÷ 5 = ? | 147 | 145 | 149
+@55
+288 ÷ 12 = ? | 24 | 22 | 26
+525 ÷ 25 = ? | 21 | 25 | 20
+391 ÷ 17 = ? | 23 | 21 | 27
+@22
+In the partial quotients method, you subtract easy... | Multiples of the divisor, then add up the partial answers | Remainders first | Digits one at a time from the right
+96 ÷ 8: 80 is 10 eights and 16 is 2 eights, so the answer is... | 12 | 10 | 14
+250 ÷ 5 = ? | 50 | 45 | 55
+@5
+17 ÷ 5 with a remainder is... | 3 R 2 | 3 R 4 | 2 R 7
+17 ÷ 5 as a decimal is... | 3.4 | 3.2 | 3.5
+9 ÷ 4 as a decimal is... | 2.25 | 2.4 | 2.1
+@98
+3 + 4 × 2 = ? | 11 | 14 | 10
+(3 + 4) × 2 = ? | 14 | 11 | 10
+20 − 6 ÷ 2 = ? | 17 | 7 | 4
+@103
+Which number is a factor of 18? | 6 | 5 | 8
+What are all the factors of 12? | 1, 2, 3, 4, 6, 12 | 1, 2, 4, 12 | 2, 3, 4, 6
+A factor of a number... | Divides into it evenly | Is always bigger than it | Is added to it
+@97
+Which number is prime? | 13 | 15 | 21
+The prime factorization of 12 is... | 2 × 2 × 3 | 3 × 4 | 2 × 6
+The prime factorization of 30 is... | 2 × 3 × 5 | 5 × 6 | 3 × 10
+@10
+What is the GCF of 12 and 18? | 6 | 3 | 36
+What is the GCF of 8 and 20? | 4 | 2 | 8
+What is the GCF of 7 and 9? | 1 | 63 | 2
+@9
+What is the LCM of 4 and 6? | 12 | 24 | 2
+What is the LCM of 3 and 5? | 15 | 8 | 30
+The LCM is the smallest number that... | Both numbers divide into evenly | Divides into both numbers | Is between the two numbers
+@8
+12 = 2×2×3 and 18 = 2×3×3. Their LCM is... | 36 | 72 | 6
+What is the LCM of 8 and 12? | 24 | 48 | 4
+What is the LCM of 10 and 15? | 30 | 150 | 5

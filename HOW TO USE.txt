@@ -1,0 +1,83 @@
+MATH ANTICS COURSE
+==================
+104 video lessons from the "Math Antics" YouTube channel, organized into
+10 units and 25 chapters, with a 3-question quiz for every lesson, a test
+for every chapter, and a test for every unit.
+
+HOW TO OPEN IT
+--------------
+Online (any device): https://py-piorg.github.io/math-antics-course/
+
+On this computer without internet hosting: double-click "Start Course.bat". It
+opens the course at http://localhost:8766. Keep the black window open while
+studying. (YouTube doesn't let videos play when index.html is opened by
+double-clicking. Every lesson also has a "Watch it on YouTube" link.)
+
+HOW PROGRESS WORKS
+------------------
+FAIR-PLAY RULES (to stop shortcuts)
+- A lesson quiz unlocks only after 85% of the video has actually been played.
+  Skipping ahead doesn't count, and the fastest speed is 1.5x.
+- Pop quizzes say right or wrong, but don't show the correct answer.
+- A failed lesson quiz marks which questions she missed and when in the video
+  each one is taught, but not the right option. She has to watch the video
+  again before the next try. Answers are shown after she passes.
+- To learn the right answers, she uses Review mistakes: she answers each
+  missed question again, then it shows the correct one.
+- Once a lesson is complete, retaking its quiz is practice only; the saved
+  score doesn't change.
+- A failed chapter or unit test marks each missed question with the lesson
+  (and time) it comes from, but not the answers, and the next try opens after 15 minutes.
+- Backup codes are signed; an edited code won't restore. If the saved
+  progress is edited by hand, the Progress report shows a warning.
+- The answer key isn't readable in the page; it can't be made impossible to
+  dig out (everything runs in her browser), but it's no longer easy.
+
+- Lessons: watch the video, answer the 3 quiz questions, press "Check answers".
+  2 or 3 right marks the lesson complete (green check). After a pass, the
+  correct answers are shown underneath.
+- Pop quizzes: after she presses Play, the lesson's 3 quiz questions pause the
+  video during the second half (Math Antics descriptions don't list chapter
+  times, so they are spread out rather than timed to the exact moment). Her
+  answers there are filled into the quiz below the video. Use the
+  "Full screen" button under the video (not YouTube's) so questions still show.
+- Unit tests: at the bottom of each unit page. 10 questions mixed from that
+  unit's lessons, a new mix every try. 8 right passes. Missed questions link
+  back to the lesson they came from.
+- Chapter tests: at the end of each chapter on the unit page. Up to 10
+  questions from that chapter's lessons; 80% passes.
+- Badges: earned for study streaks, lesson milestones, perfect quizzes,
+  chapter tests, and each unit test. A pop-up appears when she earns one.
+- Certificates: finish every lesson in a unit AND pass its unit test. The
+  first time, it asks for her name to print on it ("Change name" fixes it).
+  "Print certificate" opens Windows printing; choose Landscape, or pick
+  "Microsoft Print to PDF" to save it as a file.
+  All of these are on the "Badges & certificates" page.
+- Review mistakes: every question she misses (lesson quiz, pop quiz, or unit
+  test) goes into a review pile. "Review mistakes" on the home page asks up to
+  10 at a time; getting one right 2 times in a row clears it.
+- Progress report (home page or bottom of any page): the last 7 days vs the
+  week before: lessons completed, minutes watched, days studied, quiz average,
+  pop-quiz accuracy, unit tests, a day-by-day chart, topics she's missing most,
+  and recent activity. It lives on her device, so check it there.
+- The home page shows overall progress, unit tests passed, and how many days
+  in a row she has studied.
+- Progress is saved in the browser she uses. To move it to another device, use
+  "Move or back up progress" at the bottom of any page: copy the code on one
+  device and paste it under "Restore" on the other.
+- "Reset progress" is at the bottom of every page.
+- The round button at the top right switches between auto, light, and dark.
+- Press / on a keyboard to jump to search; Enter opens the first result.
+
+LEFT OUT ON PURPOSE
+-------------------
+The channel's "Channel Update - Introducing Extras" video (an announcement,
+not a lesson). It is on the "X" line in data/outline.txt.
+
+CHANGING THE COURSE
+-------------------
+data/outline.txt     units, chapters, lesson order, and left-out videos
+data/quiz1-5.txt     the quiz questions (question | right answer | wrong | wrong)
+data/checkpoints.json when each question pops up (seconds into the video)
+Rebuild after editing, then commit and push to update the website:
+  node tools/build.js data/videos.json data course-data.js

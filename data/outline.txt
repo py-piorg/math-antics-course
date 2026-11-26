@@ -1,0 +1,73 @@
+# Course outline. U = unit, C = chapter, then the video numbers (index in channel list, newest = 0) in lesson order.
+# X = videos left out of the course on purpose
+U Numbers & Place Value | What numbers mean, how place value works, and reading numbers in different ways.
+C Whole Numbers
+60 48 21 16 52 23 11
+
+U The Four Operations | Add, subtract, multiply, and divide with confidence, including long division.
+C Adding & Subtracting
+102 99
+C Multiplying
+101 100 49
+C Dividing
+81 79 55 22 5
+C Putting It Together
+98
+
+U Factors & Multiples | Factors, primes, GCF, and LCM: the tools you need for fractions.
+C Factors & Multiples
+103 97 10 9 8
+
+U Fractions | What fractions are, how to simplify and compare them, and how to do math with them.
+C Fraction Basics
+2 87 83 88 84 1
+C Simplifying & Comparing
+85 95 94 93
+C Fraction Arithmetic
+96 86 90
+C Mixed Numbers
+39 38 37 12
+
+U Decimals, Percents & Ratios | Decimals, money, percents, ratios, and proportions.
+C Decimals
+45 14 51 7 6
+C Fractions to Decimals
+89 91 92 104
+C Percents
+82 73 80 72 70 24
+C Ratios & Proportions
+68 64
+
+U Integers, Exponents & Roots | Negative numbers, absolute value, exponents, square roots, and scientific notation.
+C Negative Numbers
+63 62 61 30
+C Exponents & Roots
+34 33 29 17 32
+
+U Measurement | The metric system, distance, temperature, and time.
+C Measurement
+36 35 27 13 26
+
+U Geometry | Points, lines, angles, shapes, area, volume, and the Pythagorean theorem.
+C Lines & Angles
+77 78 76
+C Shapes
+75 74 71 4 0
+C Perimeter, Area & Volume
+69 67 66 65 3 46 41
+
+U Data & Probability | Reading graphs, averages, and chance.
+C Data & Probability
+18 42 31
+
+U Algebra | Variables, equations, inequalities, polynomials, and graphing functions.
+C Algebra Basics
+58 57 59 53
+C Inequalities
+20 19
+C Exponents & Polynomials
+56 25 54 50 47
+C Graphs & Functions
+44 43 40 28
+
+X 15
